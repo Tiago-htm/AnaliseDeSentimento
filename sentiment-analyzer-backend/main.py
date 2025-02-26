@@ -1,10 +1,10 @@
-#organizar em ordem alfabetica as biblioteca!
 from fastapi import FastAPI, HTTPException,Request,Depends
 from fastapi.responses import JSONResponse
 from fastapi.exceptions import RequestValidationError
 from pydantic import BaseModel #pydantic serve para validação de dados
 from sqlalchemy.orm import Session
 from transformers import pipeline
+from fastapi.middleware.cors import CORSMiddleware
 #Meus imports
 from database import get_db, engine
 from models import Base, SentimentAnalysis
@@ -16,6 +16,17 @@ Base.metadata.create_all(bind=engine)
 
 #------------------------------------------------------------------------------#
 app = FastAPI() #chama o Fast APi
+
+#  isso é CORS serve para permitir que o front converse com o a API
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],  #endereço da minha aplicação
+    allow_credentials=True,
+    allow_methods=["*"], #permite todos os methodos
+    allow_headers=["*"],  
+)
+
+
 
 try:
     sentiment_analyzer =  pipeline("sentiment-analysis") # biblioteca que analisa sentimentos da transformers
