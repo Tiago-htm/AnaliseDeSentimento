@@ -1,0 +1,12 @@
+Este projeto é capaz de analisar sentimento em uma frase, quando mais proximo de 10 o resultado mais o sistema tem certeza da sua resposta.
+
+Para rodar o projeto execute os comandos:
+
+source venv/bin/activate
+uvicorn main:app --reload
+
+e na pasta do front-end
+npm install para baixar as depedencias 
+npm start
+
+O projeto foi desenvolvido em Phyton (backend) e React (frontend)
